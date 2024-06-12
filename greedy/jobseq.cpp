@@ -4,64 +4,40 @@ using namespace std;
 
 struct item
 {
-    int jId;
-    int dline;
-    int profit;
+    int aId;
+    int starta;
+    int enda;
 };
 
 bool compare(struct item i1, struct item i2)
 {
-    return i1.profit > i2.profit; 
+    return i1.enda < i2.enda; 
 }
 
 int main()
 {
-    struct item jobs[] = {{1, 4, 20},   // 2
+    struct item activities[] = {{1, 3, 4},   // 2
                           {2, 1, 10},   // 3
                           {3, 1, 40},  // 0
                           {4, 1, 30} }; // 1
 
     
-    int n = 4;
+    int n = 10;
+    
+    sort(activities, activities + n, compare); 
 
-
-    int maxDead = jobs[0].dline;
-
+    int lae = activities[0].enda;
+    vector<int> acts; 
+    acts.push_back(  activities[0].aId    ); 
     for(int i = 1; i < n; i++)
     {
-        if( maxDead < jobs[i].dline) 
+        if( lae <= activities[i].starta )
         {
-            maxDead = jobs[i].dline; 
+            acts.push_back( activities[i].aId); 
+            lae = activities[i].enda; 
         }
     }
 
-    int slots[maxDead + 1] = {0}; 
-
-    sort(jobs, jobs + n, compare );
-     
-    int sumProfit = 0; 
-    int occupied = 0; 
-    for(int i = 0; i < n ;i++)
-    {
-        int j = jobs[i].dline; // 1 
-        while( j!=0 && slots[j] != -1 )
-        {
-            j--;
-        }
-
-        if(j > 0)
-        {
-            slots[j] = jobs[i].jId; 
-            occupied++; 
-            sumProfit += jobs[i].profit; 
-        }
-
-    }
-
-    cout << sumProfit <<"  " << occupied; 
-
-     
-
-
+    // print(acts) 
  
 }
