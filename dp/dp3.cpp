@@ -82,7 +82,7 @@ int minEdits(string s1, string s2)
     {
         for(int j = 1; j < s1len + 1; j++) // s1 
         {
-            if( s2[i] == s1[j])
+            if( s2[i-1] == s1[j-1])
             {
                 dp[i][j] = dp[i-1][j-1]; 
             }
