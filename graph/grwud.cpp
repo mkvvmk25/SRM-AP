@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+
 using namespace std;
 class GraphUDW
 {
@@ -25,6 +26,7 @@ public:
 
     void prims()
     {
+        // 
         priority_queue<vector<int>, vector<vector<int>>, Compare> pq;
         vector<int> vis(vertex, -1);
         //        w n p
